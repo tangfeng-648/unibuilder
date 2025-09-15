@@ -75,6 +75,8 @@ EOF
     fi
 
     [ ! -d ${CURRENT_DIR}/out ] && mkdir ${CURRENT_DIR}/out
+
+    return 0
 }
 
 
