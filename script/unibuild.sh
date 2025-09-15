@@ -73,6 +73,8 @@ prepare_host() {
 $USER ALL=(ALL:ALL) NOPASSWD: ALL
 EOF
     fi
+
+    [ ! -d ${CURRENT_DIR}/out ] && mkdir ${CURRENT_DIR}/out
 }
 
 
