@@ -1,0 +1,13 @@
+diff --git a/tool/src/afptool.c b/tool/src/afptool.c
+index 4f8d969..fe8693c 100644
+--- a/tool/src/afptool.c
++++ b/tool/src/afptool.c
+@@ -249,7 +249,7 @@ int parse_partitions(char *str) {
+ 
+ int action_parse_key(char *key, char *value) {
+ 	if (strcmp(key, "FIRMWARE_VER") == 0) {
+-		unsigned int a, b, c;
++		unsigned int a, b, c=0;
+ 		sscanf(value, "%d.%d.%d", &a, &b, &c);
+ 		package_image.version = (a << 24) + (b << 16) + c;
+ 	} else if (strcmp(key, "MACHINE_MODEL") == 0) {

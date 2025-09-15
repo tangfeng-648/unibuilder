@@ -1,0 +1,47 @@
+# 终端最小系统列表#
+# 如果要制作最小系统#
+# 只保留本列表即可#
+# 注意需要在源列表只保留最上面的Bootstrap源(kylin源)#
+# SECURITY和UPDATES升级设置为false#
+# 不要在本列表添加新软件包#
+
+### base ###
+adduser
+apt
+apt-utils
+base-files
+base-passwd
+bash
+dpkg
+debconf
+gnupg
+gpg
+hostname
+ifupdown
+language-pack-zh-hans
+locales
+login
+# minicom
+openssh-client
+openssh-server
+openssh-sftp-server
+passwd
+perl-base
+sudo
+systemd
+util-linux
+ucf
+zlib1g
+net-tools
+netplan.io
+w3m
+xdg-user-dirs
+
+# 激活软件包版本必要#
+libkylin-activation
+
+# 做版本需要#
+genisoimage
+
+# systemd版本最原始版本
+libsystemd0

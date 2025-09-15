@@ -1,0 +1,157 @@
+# Copyright (C) 2025, KylinSoft Co., Ltd.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+# Authors: tangfeng <tangfeng@kylinos.cn>
+msgid ""
+msgstr ""
+"Project-Id-Version: unibuilder v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-20 00:00+0800\n"
+"PO-Revision-Date: 2025-08-20 23:37+0800\n"
+"Last-Translator: root <root@kylin>\n"
+"Language-Team: Chinese (simplified)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Show"
+msgstr "查看配置"
+
+msgid "Generate"
+msgstr "重新生成"
+
+msgid "Show and Use current configuration file"
+msgstr "查看并使用当前配置文件"
+
+msgid "Create a new configuration file"
+msgstr "创建新的配置文件"
+
+msgid "Choose an option"
+msgstr "选择一个选项"
+
+msgid "Detected an old config file"
+msgstr "检测到旧的配置"
+
+msgid "Choose a board"
+msgstr "选择开发板"
+
+msgid "Select your board"
+msgstr "选择你的主板"
+
+msgid "Select the distro"
+msgstr "选择操作系统发行版"
+
+msgid "Board Support Binary"
+msgstr "板级二进制"
+
+msgid "desktop environment"
+msgstr "桌面环境"
+
+msgid "Select the distro suite"
+msgstr "选择发行系列"
+
+msgid "may not fully support"
+msgstr "可能没有完全支持"
+
+msgid "OS"
+msgstr "系统"
+
+msgid "APT Source"
+msgstr "源列表"
+
+msgid "Platform"
+msgstr "平台"
+
+msgid "Press Space to select third-party software"
+msgstr "按下空格键选择第三方软件"
+
+msgid "Choose desktop softwares to add"
+msgstr "选择添加系统软件"
+
+msgid "Select chip platform"
+msgstr "选择芯片平台"
+
+msgid "Select chip model"
+msgstr "选择芯片型号"
+
+msgid "Select the target image type"
+msgstr "选择目标镜像种类"
+
+msgid "The rootfs format is"
+msgstr "根文件系统格式是"
+
+msgid "Kylin OS Building Script"
+msgstr "麒麟系统统一构建脚本"
+
+msgid "Author"
+msgstr "作者"
+
+msgid "Found a duplicate version"
+msgstr "发现重复的版本"
+
+msgid "Press NO to reuse"
+msgstr "复用目录"
+
+msgid "Press YES to delete"
+msgstr "删除目录"
+
+msgid "Choose rootfs type"
+msgstr "选择根文件系统格式"
+
+msgid "browsers"
+msgstr "浏览器"
+
+msgid "editors"
+msgstr "编辑器"
+
+msgid "email"
+msgstr "邮箱"
+
+msgid "internet"
+msgstr "互联网"
+
+msgid "multimedia"
+msgstr "多媒体"
+
+msgid "office"
+msgstr "办公"
+
+msgid "programming"
+msgstr "编程"
+
+msgid "remote"
+msgstr "远程"
+
+msgid "tools"
+msgstr "工具"
+
+msgid "chat"
+msgstr "聊天"
+
+msgid "Phytium"
+msgstr "飞腾"
+
+msgid "Rockchip"
+msgstr "瑞芯微"
+
+msgid "Kylin"
+msgstr "麒麟"
+
+msgid "Chip"
+msgstr "芯片"
+
+msgid "Loongarch"
+msgstr "龙芯"

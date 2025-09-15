@@ -1,0 +1,17 @@
+build-essential
+clang
+gcc
+g++
+fakeroot
+libc6-dev
+initramfs-tools
+linux-libc-dev
+libasan5
+cmake
+git
+bc
+flex
+bison
+libssl-dev
+zstd
+lz4

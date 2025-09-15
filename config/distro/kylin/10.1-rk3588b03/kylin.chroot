@@ -1,0 +1,172 @@
+#!/bin/bash
+##################################################################
+# 平台的配置脚本,版本的所有配置功能均在此脚本体现
+##################################################################
+set +e
+
+function Info() {
+    echo -e "\e[32m---->$1\e[0m"
+}
+
+Info "Running in kylin.chroot."
+
+export LC_ALL=C
+export DEBIAN_FRONTEND=noninteractive
+export APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+
+# 生成kylin-build
+BUILD_INFO="kylin-build"
+echo "---> /etc/${BUILD_INFO}"
+(
+        echo "Kylin-Desktop V10"
+        echo "Build $(date "+%Y%m%d")"
+        echo "buildid: 71130"
+        echo "Built by 'unibuilder'"
+) | tee /etc/${BUILD_INFO}
+echo
+
+# 生成ssh key
+yes | ssh-keygen -t rsa -P '' -f /etc/ssh/ssh_host_rsa_key
+yes | ssh-keygen -t dsa -P '' -f /etc/ssh/ssh_host_dsa_key
+yes | ssh-keygen -t ecdsa -P '' -f /etc/ssh/ssh_host_ecdsa_key
+yes | ssh-keygen -t ed25519 -P '' -f /etc/ssh/ssh_host_ed25519_key
+
+# root登录
+sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sed -i 's/^PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+# 解决NetworkManager无法管理网络接口的问题
+sed -i 's/^[^#]/#&/' /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
+
+# 解决DNS不生效的问题
+sed -i 's/^hosts:.*/hosts: files dns/' /etc/nsswitch.conf
+
+# 中文
+touch /etc/default/locale
+echo 'LANG="zh_CN.UTF-8"' > /etc/default/locale
+echo 'LANGUAGE="zh_CN:zh"' >> /etc/default/locale
+cat >/etc/locale.gen <<EOF
+zh_CN.UTF-8 UTF-8
+en_US.UTF-8 UTF-8
+EOF
+cat >/etc/default/locale <<EOF
+LANG=zh_CN.UTF-8
+LANGUAGE="zh_CN:zh"
+EOF
+
+# 默认性能模式
+sed -i 's#GOVERNOR="ondemand"#GOVERNOR="performance"#g' /etc/init.d/cpufrequtils
+
+# mysql远程连接
+[ -f /etc/mysql/mysql.conf.d/mysqld.cnf ] && sed -i 's/= 127.0.0.1/= 0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# overlay默认目录
+mkdir -p /home/kylin/.config/overlay
+chown -R kylin:kylin /home/kylin/.config/
+
+##解决xrdp远程桌面默认不起session问题
+cat > /etc/skel/.xsession <<EOF
+ukui-session
+EOF
+
+#解决xrdp远程桌面ssl文件访问权限问题，后续要查清楚原因，用脚本改感觉有安全漏洞
+chmod -R a+x /etc/ssl/private
+chmod -R a+r /etc/ssl/private
+
+# 网络安全设置
+echo "net.ipv4.conf.all.send_redirects = 0" >>/etc/sysctl.conf
+echo "net.ipv4.conf.default.send_redirects = 0" >>/etc/sysctl.conf
+echo "net.ipv4.conf.all.accept_redirects = 0" >>/etc/sysctl.conf
+echo "net.ipv4.conf.default.accept_redirects = 0" >>/etc/sysctl.conf
+echo "net.ipv4.conf.all.secure_redirects = 0" >>/etc/sysctl.conf
+echo "net.ipv4.conf.default.secure_redirects = 0" >>/etc/sysctl.conf
+
+# 增加用户kylin
+useradd -m  -d /home/kylin -s /bin/bash -p kyYFdQFAeVrPQ kylin
+echo "kylin:qwer1234" | chpasswd
+addgroup kylin adm
+addgroup kylin sudo
+mkdir -p /home/kylin/.config
+chown -R kylin:kylin /home/kylin/
+addgroup kylin lpadmin
+addgroup kylin video
+addgroup kylin nopasswdlogin
+# 默认root密码
+echo "root:qwer1234" | chpasswd
+
+echo "Asia/Shanghai" > /etc/timezone
+rm -rf /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# 自动登录
+# grep -q autologin-user /usr/share/lightdm/lightdm.conf.d/95-ukui-greeter.conf || echo "autologin-user=kylin" >> /usr/share/lightdm/lightdm.conf.d/95-ukui-greeter.conf
+
+# 默认环境变量
+echo 'export DISPLAY=:0' >> /etc/profile.d/kylin.sh
+echo 'export XDG_RUNTIME_DIR=/run/user/1000' >> /etc/profile.d/kylin.sh
+echo 'export KWIN_COMPOSE=O2ES' >> /etc/profile.d/kylin.sh
+echo 'export COGL_DRIVER=gles2' >> /etc/profile.d/kylin.sh
+echo 'export QTWEBENGINE_CHROMIUM_FLAGS="--no-sandbox --disable-es3-gl-context --ignore-gpu-blacklist --ignore-gpu-blocklist --enable-accelerated-video-decode"' >> /etc/profile.d/kylin.sh
+echo 'export GTK_IM_MODULE=fcitx' >> /etc/profile.d/kylin.sh
+echo 'export QT_IM_MODULE=fcitx' >> /etc/profile.d/kylin.sh
+echo 'export QT4_IM_MODULE=fcitx' >> /etc/profile.d/kylin.sh
+# 添加data work目录
+[ -d /data/ ] || mkdir /data/
+[ -d /work/ ] || mkdir /work/
+chown kylin:kylin /data /work
+
+# xhost 增加root
+sed -i '/  xhost +si:localuser:$(id -un) || :/a\  xhost +si:localuser:root || :'  /etc/X11/Xsession.d/35x11-common_xhost-local
+
+# 调整服务默认启动状态
+systemctl disable ondemand
+systemctl mask serial-getty@ttyS0
+systemctl disable auditd.service
+systemctl disable anacron
+systemctl disable apparmor
+systemctl disable atd
+systemctl disable autovt@
+systemctl disable dmesg
+systemctl disable lvm2-monitor
+systemctl disable ufw
+systemctl disable networking.service
+systemctl disable e2scrub_reap.service
+systemctl enable automount
+systemctl enable android-adbd
+systemctl stop rsync
+systemctl mask rsync
+systemctl disable loadcpufreq.service
+systemctl mask cpufrequtils.service
+systemctl mask kysec-mempro
+# 关闭自动挂起，自动休眠
+systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+
+# 默认root登录
+[ -f /opt/serial-getty@.service ] && cp /opt/serial-getty@.service  /lib/systemd/system/serial-getty@.service
+[ -f /opt/getty@.service ] && cp /opt/getty@.service  /lib/systemd/system/getty@.service
+rm -f /opt/serial-getty@.service /opt/getty@.service
+rm -f /etc/modules-load.d/cups-filters.conf
+
+# 更新配置 
+# echo "PARTLABEL=data  /data           ext4     nofail,auto,user,exec,rw,sync        1 2" >> /etc/fstab
+# echo "PARTLABEL=work  /work           ext4     nofail,auto,user,exec,rw,sync        1 2" >> /etc/fstab
+echo kylin > /etc/hostname
+
+rm -f /lib/udev/rules.d/75-net-description.rules
+rm -f /usr/share/applications/kylin-os-installer.desktop
+
+# sed -i "/\[global\]/a server signing = mandatory" /etc/samba/smb.conf
+# sed -i "s/map to guest/#map to guest/" /etc/samba/smb.conf
+
+# 删除不必要的开发包
+# initramfs
+dpkg -P initramfs-tools initramfs-tools-bin initramfs-tools-core libsecurity1-scripts
+
+# 删除apt配置
+rm -rf /etc/apt/apt.conf.d/00recommends
+rm -rf /etc/apt/apt.conf.d/00secure
+
+apt clean
+
+Info "Kylin OS is built completly"

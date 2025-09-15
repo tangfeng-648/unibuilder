@@ -1,0 +1,45 @@
+diff --git a/tool/src/img_maker.c b/tool/src/img_maker.c
+index ce08283..971b1db 100644
+--- a/tool/src/img_maker.c
++++ b/tool/src/img_maker.c
+@@ -8,6 +8,32 @@
+ #include "rkrom.h"
+ #include "rkafp.h"
+ 
++void special_afpimage_size(const char* afpimg, struct rkfw_header* header)
++{
++        FILE *fp = NULL;
++	unsigned long imgsize = 0;
++	unsigned long size_4g = 4LL*1024*1024*1024;
++	unsigned int r = 0;
++
++        fp = fopen(afpimg, "rb");
++        if (!fp)
++		return;
++
++        fseek(fp, SEEK_SET, SEEK_END);
++	imgsize = ftell(fp);
++	r = imgsize / size_4g;
++	printf("r=%d \n", r);
++	if (r > 0){
++		header->backup_endpos = 0x49480000;
++	}
++
++	header->reserved[0] = r;
++	printf("%#x %#x %d \n", header->backup_endpos, header->reserved[0]);
++
++        if (fp)
++                fclose(fp);
++}
++
+ unsigned int import_data(const char* infile, void *head, size_t head_len, FILE *fp)
+ {
+ 	FILE *in_fp = NULL;
+@@ -167,6 +193,7 @@ int pack_rom(unsigned int chiptype, const char *loader_filename, int majver, int
+ 		rom_header.backup_endpos = 0;
+ #endif
+ 
++	special_afpimage_size(image_filename, &rom_header);
+ 	fseek(fp, 0, SEEK_SET);
+ 	if (1 != fwrite(&rom_header, sizeof(rom_header), 1, fp))
+ 		goto pack_fail;

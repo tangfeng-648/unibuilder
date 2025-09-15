@@ -1,0 +1,17 @@
+# rk3588平台包列表#
+libmali-valhall-g610-g13p0-x11-gbm
+librga2
+librockchip-mpp1
+rknpu-3588
+rockchip-multimedia-config
+android-adbd
+# ffmpeg
+gstreamer1.0-rockchip1
+libavcodec58
+libdrm2
+libegl-mesa0
+libglapi-mesa
+libmpv1
+libpostproc55
+libsdl2-2.0-0
+libv4l-0

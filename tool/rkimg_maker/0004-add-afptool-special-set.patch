@@ -1,0 +1,40 @@
+diff --git a/tool/src/afptool.c b/tool/src/afptool.c
+index fe8693c..580ef7b 100644
+--- a/tool/src/afptool.c
++++ b/tool/src/afptool.c
+@@ -526,12 +526,19 @@ int import_package(FILE *ofp, struct update_part *pack, const char *path)
+ 
+ 			fwrite(buf, 1, sizeof(buf), ofp);
+ 			pack->size += readlen;
+-			pack->padded_size += sizeof(buf);
++			pack->padded_size += sizeof(buf) / 2048;
+ 		} while (!feof(ifp));
+ 
+-		pack->padded_size = pack->padded_size / 2048;
++		//pack->padded_size = pack->padded_size / 2048;
+ 		if(pack->padded_size == 0)
+ 			pack->padded_size=1;
++
++	        fseek(ifp, SEEK_SET, SEEK_END);
++	        unsigned int r = ftell(ifp) / (4LL*1024*1024*1024);
++	        if (r > 0){
++			pack->filename[55]= 0x48;
++	        }
++		pack->filename[56]= r;
+ 	}
+ 
+ 	fclose(ifp);
+@@ -618,6 +625,13 @@ int pack_update(const char* srcdir, const char* dstfile) {
+ 		}
+ 	}
+ 
++	fseek(fp, SEEK_SET, SEEK_END);
++	unsigned int r = ftell(fp) / (4LL*1024*1024*1024);
++	if (r > 0){
++               header.model[0x1d] = 0x48;
++	}
++	header.model[0x1e] = r;
++
+ 	fseek(fp, 0, SEEK_SET);
+ 	fwrite(&header, sizeof(header), 1, fp);
+ 

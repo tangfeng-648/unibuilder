@@ -1,0 +1,95 @@
+diff --git a/afptool b/afptool
+index 5fc7784..9c63ee6 100755
+Binary files a/afptool and b/afptool differ
+diff --git a/afptool.c b/afptool.c
+index 3c73019..dc42ead 100644
+--- a/afptool.c
++++ b/afptool.c
+@@ -211,6 +211,9 @@ int parse_partitions(char *str) {
+ 			p_part = &(package_image.partitions[package_image.num_partition]);
+ 
+ 			p_part->size = strtol(part, &ptr, 16);
++			if(*ptr == '-'){
++				p_part->size = 0xffffffff;
++			}
+ 			ptr = strchr(ptr, '@');
+ 			if (!ptr)
+ 				continue;
+@@ -222,6 +225,8 @@ int parse_partitions(char *str) {
+ 
+ 			for (i = 0, ptr++; i < sizeof(p_part->name) && *ptr && *ptr != ')'; i++, ptr++)
+ 			{
++				if(*ptr == ':')
++					break;
+ 				p_part->name[i] = *ptr;
+ 			}
+ 
+@@ -345,7 +350,7 @@ static struct partition first_partition =
+ {
+ 		"parameter",
+ 		0,
+-		0x2000
++		0x4000
+ };
+ 
+ struct partition* find_partition_byname(const char *name)
+@@ -464,6 +469,20 @@ int get_packages(const char *fname)
+ 	return 0;
+ }
+ 
++void printhex(const char *buffer, size_t len)
++{
++    if (buffer == NULL || len <= 0)
++    {
++        return;
++    }
++    printf("0x%p: [", buffer);
++    for (size_t i = 0; i < len; i++)
++    {
++        printf("%.2X ", (unsigned char)buffer[i]);
++    }
++    printf("]\n");
++}
++
+ int import_package(FILE *ofp, struct update_part *pack, const char *path)
+ {
+ 	FILE *ifp;
+@@ -491,7 +510,8 @@ int import_package(FILE *ofp, struct update_part *pack, const char *path)
+ 
+ 		fwrite(buf, 1, sizeof(buf), ofp);
+ 		pack->size += readlen;
+-		pack->padded_size += sizeof(buf);
++		//pack->padded_size += sizeof(buf);
++		pack->padded_size += 1;
+ 	} else {
+ 		do {
+ 			readlen = fread(buf, 1, sizeof(buf), ifp);
+@@ -505,6 +525,10 @@ int import_package(FILE *ofp, struct update_part *pack, const char *path)
+ 			pack->size += readlen;
+ 			pack->padded_size += sizeof(buf);
+ 		} while (!feof(ifp));
++
++		pack->padded_size = pack->padded_size / 2048;
++		if(pack->padded_size == 0)
++			pack->padded_size=1;
+ 	}
+ 
+ 	fclose(ifp);
+@@ -567,14 +591,15 @@ int pack_update(const char* srcdir, const char* dstfile) {
+ 		if (strcmp(package_image.packages[i].filename, "SELF") == 0)
+ 			continue;
+ 
+-		printf("Add file: %s\n", header.parts[i].filename);
++		printf("Add file:%s\n", header.parts[i].filename);
+ 		import_package(fp, &header.parts[i], header.parts[i].filename);
++		printf("nand_size=%#x pos=%#x nand_addr=%#x padded_size=%#x size=%#x \n", header.parts[i].nand_size, header.parts[i].pos, header.parts[i].nand_addr, header.parts[i].padded_size, header.parts[i].size);
+ 	}
+-
+ 	memcpy(header.magic, RKAFP_MAGIC, sizeof(header.magic));
+ 	strcpy(header.manufacturer, package_image.manufacturer);
+ 	strcpy(header.model, package_image.machine_model);
+ 	strcpy(header.id, package_image.machine_id);
++
+ 	header.length = ftell(fp);
+ 	header.num_parts = package_image.num_package;
+ 	header.version = package_image.version;
