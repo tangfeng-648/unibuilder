@@ -62,8 +62,6 @@ check_single_instance() {
 }
 
 prepare_host() {
-    NAMESERVER=172.25.20.2
-
     grep -q "[[:space:]]" <<< "${CURRENT_DIR}" && {
         fault_log_exit "\"${CURRENT_DIR}\" contains whitespace. Not supported. Aborting." >&2
     }
