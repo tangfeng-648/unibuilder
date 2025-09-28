@@ -59,7 +59,7 @@ function create_base_chroot_via_debootstrap() {
     [ -z ${ROOTFS_DIR} ] && return 0
     if [ -d "${ROOTFS_DIR}" ]; then
         umount_target "${ROOTFS_DIR}"
-	[ -f /usr/bin/chattr ] && [ -f ${ROOTFS_DIR}/etc/resolv.conf ] && chattr -i ${ROOTFS_DIR}/etc/resolv.conf || true
+	[ -f /usr/bin/chattr ] && [ -f ${ROOTFS_DIR}/etc/resolv.conf ] && sudo chattr -i ${ROOTFS_DIR}/etc/resolv.conf || true
         sudo rm -rf ${ROOTFS_DIR}
     fi
 
