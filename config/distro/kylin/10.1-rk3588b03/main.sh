@@ -67,8 +67,8 @@ EOF
     then
         apt-get install -y ca-certificates
         pushd /usr/share/ca-certificates/
-        [ -f /usr/share/ca-certificates/KY-WEB.crt ] && wget http://pki.kylin.com/ca/KY-WEB.crt
-        [ -f /usr/share/ca-certificates/KY-CA.crt ] && wget http://pki.kylin.com/ca/KY-CA.crt
+        [ -f /usr/share/ca-certificates/KY-WEB.crt ] && wget --quiet http://pki.kylin.com/ca/KY-WEB.crt
+        [ -f /usr/share/ca-certificates/KY-CA.crt ] && wget --quiet http://pki.kylin.com/ca/KY-CA.crt
         popd
         echo -e 'KY-WEB.crt\nKY-CA.crt' >> /etc/ca-certificates.conf
         update-ca-certificates

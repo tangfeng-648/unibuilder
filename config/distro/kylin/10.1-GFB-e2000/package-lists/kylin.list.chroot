@@ -1,0 +1,679 @@
+##### base #####
+accountsservice
+#anacron
+apt
+
+#at
+base-files
+base-passwd
+bash
+bash-completion
+bsdutils
+command-not-found
+coreutils
+cpio
+cron
+dash
+debconf
+debconf-i18n
+debianutils
+diffutils
+dmidecode
+dpkg
+e2fsprogs
+findutils
+gnupg
+gnupg2
+grep
+hostname
+ifupdown
+init
+initramfs-tools
+iputils-ping
+language-pack-gnome-zh-hans
+language-pack-gnome-zh-hans-base
+language-pack-zh-hans
+language-pack-zh-hans-base
+less
+linux-base
+locales
+logrotate
+lsb-base
+mount
+ncurses-base
+ncurses-bin
+netbase
+net-tools
+openssh-client
+openssh-server
+perl
+plymouth
+plymouth-label
+procps
+python
+rfkill
+rsyslog
+sed
+sudo
+systemd
+systemd-sysv
+sysvinit-utils
+telnet
+time
+tzdata
+ubuntu-minimal
+ucf
+udev
+libudev1
+util-linux
+vim
+vim-common
+vim-runtime
+vim-tiny
+wget
+
+
+# kernel #
+linux-firmware
+crda
+iw
+wireless-regdb
+#linux-generic
+#linux-libc-dev
+#linux-tools-generic
+
+# kernel #
+##### base #####
+
+#### 安全 ####
+adduser
+auditd
+chpolicy
+# kysec-utils
+libpam-kysec
+libsecurity1
+login
+passwd
+policycoreutils
+security-switch
+selinux-policy-targeted
+selinux-policy-ukmcs
+selinux-policy-ukmls
+kmod
+kysec-auth
+#box-manager
+#box-utils
+kyseclog-daemon
+kysec-daemon
+kysec-sync-daemon
+# ksc-defender
+#kybaseline
+kylin-log-viewer
+### 安全中心体检扫描漏洞库包
+kylin-update-desktop-security-database
+# 保护箱文件管理器的插件
+#peony-filesafe-extensions
+
+### 安全签名包 ###
+# kylin-signtool
+# libkylin-signtool
+# libkylin-bwlist
+# kylin-ca-certificates
+### 安全签名包 ###
+#### 安全 ####
+###安全接口功能、设备管控功能###
+# audit-status-libs
+#kysec-module-authorize-upgrade
+#libsm-devctl
+#libsm-safeguard
+#sm-authorize
+# libsane1
+###安全接口功能、设备管控功能###
+
+##### desktop  #####
+#### xorg ####
+xorg
+xserver-xorg
+xserver-xorg-core
+xserver-common
+xserver-xorg-input-all
+xserver-xorg-input-wacom
+xserver-xorg-legacy
+xserver-xorg-video-all
+xserver-xorg-video-amdgpu
+xserver-xorg-video-ati
+xserver-xorg-video-fbdev
+#xserver-xorg-video-intel
+xserver-xorg-video-nouveau
+xserver-xorg-video-qxl
+xserver-xorg-video-radeon
+xserver-xorg-video-vesa
+
+mesa-va-drivers
+mesa-vulkan-drivers
+mesa-vdpau-drivers
+x11-apps
+x11-session-utils
+x11-utils
+x11-xserver-utils
+#### xorg ####
+
+#### ukui桌面环境 ####
+lightdm
+ukui-control-center
+ukui-desktop-environment
+ukui-greeter
+ukui-kwin
+ukui-media
+ukui-menu
+ukui-panel
+ukui-polkit
+ukui-power-manager
+#根据e2000产品要求替换锁屏#
+ukui-screensaver
+#ukui-screensaver-pad
+
+ukui-session-manager
+ukui-settings-daemon
+ukui-settings-daemon-common
+ukui-sidebar
+ukui-system-monitor
+ukui-window-switch
+peony
+peony-open-terminal
+peony-share
+peony-extensions
+gvfs-fuse
+parchives
+## 定时关机
+#time-shutdown
+## 显示被动弹出通知的守护进程
+ukui-notification-daemon
+## 麒麟官方软件源的签名公钥
+kylin-keyring
+## 第三方软件源签名公钥
+kylin-keyring-thirdparty
+## 权限相关
+policykit-desktop-privileges
+# 视频缩略图器
+ffmpegthumbnailer
+## ukui系统平台主题
+qt5-ukui-platformtheme
+
+#主题包新增二进制模块包
+qml-module-org-ukui-qqc2desktopstyle
+qml-module-org-ukui-stylehelper
+#全局主题
+ukui-globaltheme-common
+ukui-globaltheme-light-seeking
+#ukui-globaltheme-heyin
+#和印主题光标
+#dmz-cursor-theme
+#### ukui桌面环境 ####
+
+### 字体 ###
+fontconfig
+fontconfig-config
+fonts-dejavu-core
+fonts-freefont-ttf
+fonts-liberation
+fonts-noto
+fonts-noto-cjk
+#fonts-noto-cjk-extra
+kylin-fonts
+#cesi-fonts
+### 字体 ###
+
+#解决藏文字体偏上问题
+kylin-fonts-bo-cn
+
+### ubuntu ###
+ubuntukylin-default-settings
+ubuntukylin-wallpapers
+#壁纸包改动更新
+ubuntukylin-wallpapers-focal-2203
+### ubuntu ###
+
+### 生物识别 ###
+# ukui-biometric-manager
+## 生物认证基础组件
+# biometric-utils
+## 指纹识别 #
+# biometric-auth
+#biometric-driver-a210
+# biometric-driver-r301
+# biometric-driver-aratek-trustfinger
+## 指纹识别 #
+## libfprint指纹仪组件
+# biometric-driver-community-multidevice
+## 人脸识别 #
+# biometric-driver-seetaface-detect
+## 人脸识别 #
+#微信需求 9368
+# biometric-driver-wechat
+#支持人脸认证、ukey登录
+# biometric-driver-mh-ukey
+# biometric-driver-mh-ukey-common
+### 生物识别 ###
+
+##### desktop  #####
+
+##### 应用 #####
+## 文本编辑器
+pluma
+## 文档查看器
+atril
+## 归档管理器
+#engrampa
+## FTP客户端
+filezilla
+## 分区编辑器
+#gparted
+## 天气
+#kylin-weather
+## 画图
+kolourpaint
+## 系统激活
+kylin-activation
+## 免责申明
+kylin-verify
+kylin-verify-gui
+## 刻录
+#kylin-burner
+## 计算器
+kylin-calculator
+## 麒麟摄像头
+kylin-camera
+## 本地deb包安装卸载
+#kylin-installer
+## 麒麟传书
+#kylin-ipmsg
+## 网络配置
+kylin-nm
+## 网络高级设置、vpn设置
+network-manager-gnome
+#network-manager-pptp-gnome
+#network-manager-l2tp-gnome
+## 录音
+kylin-recorder
+## 扫描
+#kylin-scanner
+## 截图
+kylin-screenshot
+## 服务与支持
+#kylin-service-support
+## 软件中心
+#kylin-software-center
+#软件商店新增二进制插件包
+#kylin-software-center-plugin-expand
+#kylin-software-center-plugin-synchrodata
+## 升级管理
+#kylin-update-manager
+#kylin-update-manager前后端分离新增包
+#kylin-update-frontend
+## U盘启动器
+#kylin-usb-creator
+## 用户手册
+#kylin-user-guide
+#kylin-user-guide-common
+## 麒麟影音
+kylin-video
+## 终端
+mate-terminal
+## 声音服务&蓝牙
+pulseaudio
+#pulseaudio-module-bluetooth
+## 声音驱动、配置、调试
+alsa-base
+alsa-utils
+alsa-topology-conf
+alsa-ucm-conf
+## 远程桌面
+vino
+#tigervnc-standalone-server
+#tigervnc-common
+#remmina
+remmina-plugin-rdp
+remmina-plugin-secret
+remmina-plugin-vnc
+xorgxrdp
+#xrdp
+## 备份还原
+yhkylin-backup-tools
+
+## 扫描工具库
+#sane-utils
+## BT下载
+#transmission-qt
+## 蓝牙
+#ukui-bluetooth
+## usb模式转换工具
+usb-modeswitch
+## 音乐播放器
+kylin-music
+## 图片浏览
+kylin-photo-viewer
+## 闹钟
+#ukui-clock
+## 便签
+#ukui-notebook
+#U盘重命名
+peony-device-rename
+#投屏多端协同
+#ky-miracast-source
+## 麒麟手机助手
+#kylin-mobile-assistant
+## 数据采集和上报
+#kylin-daq
+# 内部测试水印
+#ukui-watermark
+### 分区加密 ###
+# cryptsetup-initramfs
+##  提供触摸映射功能
+libkysset
+### 提供触摸校准工具
+#kylin-xinput-calibrator
+### 控制面板投屏 ###
+#miraclecast
+systemd-coredump
+
+### 打印 ###
+#kylin-printer
+#hplip
+#hp-printer-hplip-3.20.3
+avahi-autoipd
+avahi-daemon
+avahi-utils
+cups
+cups-browsed
+cups-bsd
+cups-pk-helper
+#bluez-cups
+foomatic-db-engine
+foomatic-db-compressed-ppds
+libpaper-utils
+libcupsimage2
+libnss-mdns
+openprinting-ppds
+printer-driver-all
+printer-driver-all-enforce
+printer-driver-brlaser
+printer-driver-c2050
+printer-driver-c2esp
+printer-driver-cjet
+printer-driver-cups-pdf
+printer-driver-dymo
+printer-driver-escpr
+printer-driver-foo2zjs
+printer-driver-foo2zjs-common
+printer-driver-fujixerox
+printer-driver-gutenprint
+#printer-driver-hpcups
+#printer-driver-hpijs
+printer-driver-indexbraille
+printer-driver-m2300w
+printer-driver-min12xxw
+printer-driver-oki
+printer-driver-pnm2ppa
+#printer-driver-postscript-hp
+printer-driver-ptouch
+printer-driver-pxljr
+printer-driver-sag-gdi
+printer-driver-splix
+system-config-printer
+system-config-printer-udev
+## printer-driver ##
+
+##云账户##
+#kylin-sso-client
+#kylin-id
+#kylin-cloud-sync
+##云账户##
+
+## 麒麟更新 ##
+#kylin-software-properties
+# kylin-background-upgrade
+kylin-system-updater
+## 麒麟更新 ##
+
+## 文件系统 ##
+dosfstools
+ntfs-3g
+btrfs-progs
+xfsprogs
+## 文件系统 ##
+
+## 压缩 ##
+tar
+gzip
+xz-utils
+zip
+unzip
+## 压缩 ##
+
+## 工具 ##
+dkms
+lsscsi
+## r8168驱动包
+#r8168-dkms
+## 工具 ##
+
+#字体管理器
+#kylin-font-viewer
+
+##### 应用 #####
+
+##### 特殊处理 #####
+### udisks2  ###
+libblockdev-crypto2
+libblockdev-mdraid2
+### udisks2  ###
+## 20210708解决iso编译问题
+xdg-utils
+##
+xdg-user-dirs
+
+# bug 85553, 安普印扫描应用程序需要
+libgimp2.0
+# bug 83416
+gtk2-engines-murrine
+# bug 83034
+libqtgui4
+libqtcore4
+# 微信依赖
+libgconf-2-4
+# 鲲鹏助手需要
+libssh2-1
+###鲲鹏助手二维码问题###
+#hostapd
+#鲲鹏助手需要
+#haveged
+
+### 历史未知
+bind9-dnsutils
+libgtk-3-bin
+libjpeg62
+libpng12-0
+##### 特殊处理 #####
+
+### arm64  特有包 ###
+### 第三方显示驱动 ###
+##景嘉微
+# mwv206-dev
+## 709驱动
+# csmicro-deb
+## 格兰菲驱动
+# gf-arise-linux-graphics-driver-dri
+
+
+## x100驱动
+#x100-gpu-ddk
+## 芯瞳驱动
+#sietium-drv
+## 716驱动包
+#jari-linux-graphics-driver-dri
+#jm9200驱动包
+#mwv207-dev
+#mwv207-vaapi
+#mwv207-vdpau
+#芯动显卡驱动
+#innogpu-g0
+#rx6400/6600驱动包
+#amdgpu-dkms
+#锐信视图驱动
+#rxview-bf200
+#摩尔显卡驱动
+#musa
+#象帝先驱动包
+#xdxgpu
+
+
+
+### 第三方显示驱动 ###
+
+## grub ##
+grub-common
+grub2-common
+grub-efi-arm64
+grub-efi-arm64-bin
+## grub ##
+### arm64 特有包  ###
+
+### 麒麟安装器 ###
+# kylin-os-installer
+
+####2209新增#####
+#藏文翻译包
+kylin-language-pack-bo-cn
+kylin-language-pack-bo-cn-base
+#重力感应需求包
+screen-rotation-daemon
+#U盘分离
+kylin-device-daemon
+#网络检测工具
+#kylin-netcheck-tools
+#右键打印功能
+peony-print-pictures
+#分离systemd的配置形成新的配置包
+systemd-enhance-conf
+#麒麟管家
+#kylin-os-manager
+#防截屏
+libkysdk-ssc
+#手势
+ukui-touch-settings-plugin
+#显卡控制器
+#kylin-gpu-controller
+#手机助手
+#kylin-mobile-assistant
+#pks改动合入
+#hsdimm-lite
+#libkytrusted-security
+#libteec1
+#tee-supplicant
+#pks改动合入
+
+#国密算法需求包
+# tpm2-tools
+#飞腾国密算法scto
+# phytium-scto
+#实现了pad远程云桌面传输的透传功能
+#libvirtinput
+
+## Kylin SDK ##
+libkysdk-disk
+libkysdk-proc
+libkysdk-hardware
+## Kylin SDK ##
+
+#需求14134
+gpu-agent
+
+#######2209-RC7新增######
+#hplip依赖包-hplip OOBE安装需要的依赖
+#libsane-hpaio
+#python3-pexpect
+#python3-reportlab
+#需求17426
+#optilauncher
+
+#应用代理
+#kylin-proxy
+
+
+#安全启用工具
+ksc-set
+#点阵字库
+xfonts-wqy
+#需求18332 录屏工具
+#vokoscreen
+#手机助手
+#kylin-connectivity
+#安全管控客户端
+#kcm
+#需求123754，支持多类型VPN链接
+#network-manager-strongswan
+#network-manager-openvpn-gnome
+#libcharon-extauth-plugins
+#libstrongswan-standard-plugins
+#引导修复功能
+# kylin-fix-boot-grub
+#读写驱动程序，用于LTP测试
+exfat-fuse
+#启动输入法框架
+im-config
+#密钥环，用于保存特定情况下的用户wifi密码
+gnome-keyring
+#支持随机数生成
+#sansec-sjk1927
+####提供UDF功能####
+udftools
+libkyudfburn
+#可信启动安全接口的命令工具
+#kytrusted-utils
+
+
+
+
+
+
+
+
+### GF独有，悬浮球，删除 ###
+#kylin-authorization
+# marco
+# light-themes
+
+recollgui
+
+### 产品最后确认的默认集成清单 ###
+tcpdump
+#kdump-tools
+minicom
+sysstat
+iotop
+#pstack
+strace
+
+#集成技服调试工具
+mesa-utils
+sosreport
+#kdump-tools
+iperf3
+valgrind
+tightvncserver
+gdb
+linux-tools-common
+
+ukui-notebook
+kylin-service-support
+hostapd
+haveged
+libhw265dec
+#nfs-kernel-server
+
+bluez
+libgles-dev
+libgles1
+libkylin-activation
+gb-fonts

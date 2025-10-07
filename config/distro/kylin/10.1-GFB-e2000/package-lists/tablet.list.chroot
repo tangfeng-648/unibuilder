@@ -1,0 +1,26 @@
+##### xc平板-2304新增 （arm）#####
+kylin-app-cgroupd
+kylin-app-manager
+ukui-tablet-desktop
+kylin-status-manager
+iio-sensor-proxy
+ukui-system-appwidget 
+fcitx5
+fcitx5-chinese-addons
+fcitx5-config-qt
+fcitx5-frontend-qt5
+fcitx5-frontend-gtk2
+fcitx5-frontend-gtk3
+fcitx5-module-xorg
+libxcb-imdkit1
+kylin-virtual-keyboard
+#####小部件管理模块###
+ukui-appwidget-manager
+###多端协同-投屏 反控###
+# kylin-connectivity-tools
+###输入法繁简字体切换###
+fcitx5-module-chttrans
+##### xc平板-2304新增 #####
+####远程销毁####
+kylin-destroy-client
+kylin-destroy-server

@@ -1,0 +1,11 @@
+[Unit]
+Description=Setup RK3588 System Environment
+DefaultDependencies=no
+After=systemd-fsckd.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/E2000.sh
+
+[Install]
+WantedBy=sysinit.target

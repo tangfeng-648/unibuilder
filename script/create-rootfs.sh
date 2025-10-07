@@ -235,7 +235,8 @@ function make_update() {
     info_log "Building update.img"
     local _update="${_rootfs}-update"
     [ ! -d ${_update}/Image ] && sudo mkdir -p ${_update}/Image
-    sudo ln -sf ${_rootfs}.squashfs ${_update}/Image/rootfs.img
+    [[ ${ROOTFSTYPE} == "squashfs" ]] && sudo ln -sf ${_rootfs}.squashfs ${_update}/Image/rootfs.img
+    [[ ${ROOTFSTYPE} == "ext" ]] && sudo ln -sf ${_rootfs}.ext4 ${_update}/Image/rootfs.img
 
     sudo cp ${_rk_binary}/package-file ${_update}/package-file
     while read _tag _file; do
