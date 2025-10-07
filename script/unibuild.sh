@@ -104,7 +104,7 @@ main () {
     prepare_host
 
     # start build os
-    create_rootfs | tee ${CURRENT_DIR}/out/debug-$(date "+%Y%m%d%H").log
+    create_rootfs
 
     info_log "The ${DISTRO} distribution build has been completed!!!"
 
